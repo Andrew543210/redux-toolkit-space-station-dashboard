@@ -1,9 +1,27 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { modulesActions } from '../store/modulesSlice';
+import { alertsActions } from '../store/alertsSlice';
+import dayjs from 'dayjs';
 
 const ModulesList = () => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.modules);
+
+  const handleTogglePower = (item) => {
+    dispatch(modulesActions.toggleModulePower(item.id));
+
+    const newStatus = !item.isPowered;
+    const time = dayjs().format('HH:mm:ss');
+
+    dispatch(
+      alertsActions.addAlert({
+        id: crypto.randomUUID(),
+        message: `Module "${item.name}" was ${newStatus ? 'POWERED ON' : 'POWERED OFF'}`,
+        type: newStatus ? 'info' : 'warning',
+        timestamp: time,
+      })
+    );
+  };
 
   return (
     <div className="card">
@@ -23,11 +41,7 @@ const ModulesList = () => {
               </span>
             </div>
 
-            <button
-              onClick={() =>
-                dispatch(modulesActions.toggleModulePower(item.id))
-              }
-            >
+            <button onClick={() => handleTogglePower(item)}>
               {item.isPowered ? 'Power Off' : 'Power On'}
             </button>
           </li>
