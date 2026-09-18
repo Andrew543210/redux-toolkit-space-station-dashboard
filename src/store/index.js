@@ -1,4 +1,4 @@
-import { configureStore} from "@reduxjs/toolkit";
+import {configureStore} from "@reduxjs/toolkit";
 import stationReducer from "./stationSlice";
 import modulesReducer from "./modulesSlice";
 import alertsReducer from "./alertsSlice";
