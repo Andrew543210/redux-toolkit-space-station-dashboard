@@ -76,7 +76,9 @@ const StationStatus = () => {
         <button onClick={() => handleOxygenChange(10)}>+10 Oxygen</button>
         <button onClick={() => handleOxygenChange(-20)}>-20 Oxygen</button>
         <button onClick={() => handleEnergyChange(-15)}>-15 Energy</button>
+        <button onClick={() => handleEnergyChange(15)}>+15 Energy</button>
         <button onClick={() => handleShieldsChange(10)}>+10 Shields</button>
+        <button onClick={() => handleShieldsChange(-10)}>-10 Shields</button>
       </div>
 
       <div className="btn-group" style={{ marginTop: '12px' }}>
